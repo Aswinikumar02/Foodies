@@ -1,0 +1,33 @@
+[02 02 2017 04:06:03.749] [DEBUG] - Inside user post
+[02 02 2017 04:06:03.798] [DEBUG] - Inside user delete post
+[02 02 2017 04:06:44.508] [DEBUG] - Inside user post
+[02 02 2017 04:06:44.545] [DEBUG] - Inside user delete post
+[02 02 2017 04:10:35.725] [DEBUG] - Inside user post
+[02 02 2017 04:10:35.766] [DEBUG] - Inside user delete post
+[02 02 2017 04:11:07.208] [DEBUG] - Inside user post
+[02 02 2017 04:11:07.247] [DEBUG] - Inside user delete post
+[02 02 2017 04:14:29.328] [DEBUG] - Inside user post
+[02 02 2017 04:14:29.367] [DEBUG] - Inside user delete post
+[02 02 2017 04:19:32.782] [DEBUG] - Inside user post
+[02 02 2017 04:19:32.825] [DEBUG] - Inside user delete post
+[02 02 2017 04:20:25.833] [DEBUG] - Inside user post
+[02 02 2017 04:20:25.870] [DEBUG] - Inside user delete post
+[02 02 2017 04:23:21.703] [DEBUG] - Inside user post
+[02 02 2017 04:23:21.751] [DEBUG] - Inside user delete post
+[02 02 2017 04:26:08.189] [DEBUG] - Inside user post
+[02 02 2017 04:26:08.219] [DEBUG] - Inside user delete post
+[02 02 2017 04:27:59.456] [DEBUG] - Inside user post
+[02 02 2017 04:27:59.488] [DEBUG] - Inside user delete post
+[02 02 2017 04:28:20.532] [DEBUG] - Inside user post
+[02 02 2017 04:28:20.563] [DEBUG] - Inside user delete post
+[02 02 2017 04:31:54.388] [DEBUG] - Inside user post
+[02 02 2017 04:31:54.420] [DEBUG] - Inside user delete post
+[02 02 2017 04:32:33.691] [DEBUG] - Inside user post
+[02 02 2017 04:32:33.723] [DEBUG] - Inside user delete post
+[02 02 2017 04:33:06.134] [DEBUG] - Inside user post
+[02 02 2017 04:33:06.168] [DEBUG] - Inside user delete post
+[02 02 2017 04:33:36.759] [DEBUG] - Inside user post
+[02 02 2017 04:33:36.790] [DEBUG] - Inside user delete post
+[02 02 2017 04:33:36.801] [DEBUG] - Inside user update post
+[02 02 2017 11:52:05.390] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zomatoappdb
+[02 02 2017 11:54:34.652] [DEBUG] - Received request{"userName":"aswini","password":"pass"}

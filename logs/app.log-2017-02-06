@@ -1,0 +1,11 @@
+[06 02 2017 10:03:45.233] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zynla
+[06 02 2017 10:06:06.025] [DEBUG] - Mongoose is now disconnected..!
+[06 02 2017 10:06:23.308] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zynla
+[06 02 2017 10:07:26.398] [DEBUG] - Mongoose is now disconnected..!
+[06 02 2017 10:07:35.476] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zynla
+[06 02 2017 10:13:55.922] [DEBUG] - Received request{"userName":"svkumar"}
+[06 02 2017 10:14:42.567] [DEBUG] - Received request{"userName":"svkumar","password":"aswini"}
+[06 02 2017 10:14:57.379] [DEBUG] - Received request{"userName":"keerthana","password":"keerthi"}
+[06 02 2017 10:15:10.161] [DEBUG] - Received request{"userName":"revathi","password":"rev"}
+[06 02 2017 10:16:19.289] [DEBUG] - Received request{"userName":"revathi","password":"rev"}
+[06 02 2017 10:17:21.155] [DEBUG] - Received request{"userName":"keerthanapriya"}
