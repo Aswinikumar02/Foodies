@@ -1,29 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-var Component3 = require('./grandchild.jsx').GrandChildComponent1;
-
-class ChildComponent1 extends React.Component {
+class child1 extends React.Component {
     constructor() {
         super();
+        this.state = {cityName : ''};
+        this .state = {cuisine : ''};
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    handleClick() {
-        this.props.makeClick((document.getElementById('City').value), (document.getElementById('cuisine').value));
+    handleChange(event){
+const value = event.target.value;
+const name = event.target.name;
+this.setState({[name]:value});
     }
-    render() {
-        return (
-            <div>
-
-                <input id='City' type='text' placeholder='Search by City'/>
-                <input id='cuisine' type='text' placeholder='Search by Cuisine'/>
-                <button id='buttonsearch' type='submit' onClick={this.handleClick.bind(this)}>Search</button>
-
-                <Component3/>
-            </div>
-        );
+    handleSubmit() {
+  this.props.click(this.state.cityName, this.state.cuisine)
+  }
+    render(){
+      return(
+        <div>
+        <label>CITY</label>
+        <input type = 'text' value = {this.state.cityName} name = 'cityName' onChange = {this.handleChange} placeholder = 'enter city name'/>
+        <label>CUISINES</label>
+        <input type = 'text' value = {this.state.cuisine} name = 'cuisine' onChange = {this.handleChange} placeholder = 'enter cuisine'/>
+        <input type = 'submit' value = 'submit' onClick = {this.handleSubmit.bind(this)}/>
+      </div>
+      )
     }
-}
-
-module.exports = {
-    ChildComponent1
-}
+  }
+module.exports = child1;

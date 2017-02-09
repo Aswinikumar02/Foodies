@@ -1,20 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-var Component = require('./components/sample/index.jsx')
+var React = require('react');
+var ReactDOM = require('react-dom');
+var {browserHistory, Route, Router, IndexRoute} = require('react-router');
+var GmailBox = require('./components/GmailBox');
+var NavBar = require('./components/NavBar');
+var About = require('./components/About');
+var Home = require('./components/clientapp');
 
-class MainComponent extends React.Component {
-    constructor() {
-        super();
-        }
-    render() {
-        return (
-            <div>
-            
-                <Component/>
-            </div>
-        );
-    }
-}
-
+var MainComp = React.createClass({
+  render:function(){
+    return(
+      <div>
+      <NavBar/>
+      <br/><br/><br/><br/>
+        {this.props.children}
+      </div>
+    );
+  }
+})
 ReactDOM.render(
-    <MainComponent/>, document.getElementById('mountapp'));
+  <Router history={browserHistory}>
+                <Route path="/" component={MainComp}>
+                <IndexRoute component={Home}/>
+                <Route path="/about" component={About}/>
+                <Route path="/gmailbox" component={GmailBox}/>
+              </Route>
+
+  </Router>,document.getElementById('mountapp'));
