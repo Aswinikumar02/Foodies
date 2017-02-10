@@ -1,0 +1,15 @@
+[08 02 2017 04:19:22.737] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zynla
+[08 02 2017 04:19:22.942] [DEBUG] - Inside user post
+[08 02 2017 04:19:32.928] [DEBUG] - Inside user delete post
+[08 02 2017 04:19:38.346] [DEBUG] - Inside user update post
+[08 02 2017 04:48:11.333] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zynla
+[08 02 2017 04:48:11.491] [DEBUG] - Inside user post
+[08 02 2017 04:48:16.889] [DEBUG] - Inside user delete post
+[08 02 2017 04:48:17.339] [DEBUG] - Inside user update post
+[08 02 2017 05:19:52.116] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zynla
+[08 02 2017 10:24:15.233] [DEBUG] - Mongoose is now disconnected..!
+[08 02 2017 10:49:25.442] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zynla
+[09 02 2017 06:42:55.466] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zynla
+[09 02 2017 11:46:43.500] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zynla
+[09 02 2017 11:47:29.256] [DEBUG] - Mongoose is now connected to  mongodb://127.0.0.1:27017/zynla
+[09 02 2017 11:54:50.360] [DEBUG] - Mongoose is now disconnected..!

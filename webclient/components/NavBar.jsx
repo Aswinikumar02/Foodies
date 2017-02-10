@@ -9,6 +9,7 @@ render:function(){
     <li><Link to="/">Home</Link></li>
     <li><Link to="/gmailbox">Gmail</Link></li>
     <li><Link to="/about">About Us</Link></li>
+    <li><Link to='/favourites'>Favourite</Link></li>
     </ul>
     </div>
   );

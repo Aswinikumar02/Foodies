@@ -43,12 +43,12 @@ class MainComponent extends React.Component {
             }.bind(this)
         });
     }
+
     render() {
         return (
             <div>
                 <Component1 click={this.getResturantDataFromZomato.bind(this)}/>
                 <Component2 result={this.state.result}/>
-                <h1>{this.props.address}</h1>
             </div>
         );
     }
