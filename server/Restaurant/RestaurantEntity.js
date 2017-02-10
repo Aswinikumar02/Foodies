@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 
 var schema = new mongoose.Schema({
@@ -9,8 +10,6 @@ var schema = new mongoose.Schema({
 	ratings : Number
 })
 
-var model = mongoose.model('Restaurant' , schema);
+var Restaurant = mongoose.model('restaurant' , schema);
 
-module.exports = {
-  RestaurantModel: model
-};
+module.exports = Restaurant;

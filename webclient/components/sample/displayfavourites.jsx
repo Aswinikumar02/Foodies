@@ -13,7 +13,7 @@ class DisplayFavComponent  extends React.Component{
     var JsonArray = this.props.json.map(function(item){
       if(fav == 'favourites'){
         return <CardsComponent name={item.name}
-           img={item.image}
+           img={item.img}
            address={item.address}
            cuisines={item.cuisines}
            ratings={item.ratings} fav='favourites'/>

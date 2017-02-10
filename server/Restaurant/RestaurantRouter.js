@@ -2,34 +2,27 @@
 const logger = require('./../../applogger');
 const router = require('express').Router();
 const mongoose = require( 'mongoose' );
-const RestaurantModel = require('./restaurantEntity').RestaurantModel;
-//onst userCtrl = require('./restaurantController');
+const Restaurant = require('./restaurantEntity');
+const userCtrl = require('./restaurantController');
 
-router.post('/add', function(req, res){
-    // logger.debug("Received request"+JSON.stringify(req.body));
- if(req.body)
- {
-   let Restaurant = new RestaurantModel(req.body);
-   Restaurant.save(function(err){
-   if(err){
-     res.send(err);
-   }
-   else{
-      res.json({message:'Restaurant saved successfully'});
-   }
-   });
- }
-})
+// router.post('/add', function(req, res) {
+//     // logger.debug("Inside user post");
+//     var restaurant = new Restaurant(req.body);
 
-router.get('/', function(req, res) {
-    RestaurantModel.find({}, function(all, err) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.json({all});
-        }
-    });
-});
+//     restaurant.save().then((doc)=>{
+//     console.log("insertion sucessfull", doc);
+//     res.send("insertion sucessfull");
+//     },(err)=>{
+//         console.log("failure",err);
+//         res.send("failure");
+//     });
+
+// });
+
+router . post('/add', userCtrl.post);
+router . get('/view', userCtrl.Get);
+router. delete('/delete/:id',userCtrl.delete);
+router.put('/update/:id', userCtrl.update);
 
 
 
