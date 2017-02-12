@@ -7,7 +7,11 @@ var schema = new mongoose.Schema({
 	cuisines : String,
 	address : String,
 	img : String,
-	ratings : Number
+	ratings : Number,
+	comments:{
+		type:String,
+		default:'Enter comments'
+	}
 })
 
 var Restaurant = mongoose.model('restaurant' , schema);

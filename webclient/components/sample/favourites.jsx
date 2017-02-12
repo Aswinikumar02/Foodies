@@ -20,10 +20,21 @@ class Favourites extends React.Component{
       }.bind(this)
      });
   }
+
+  removeFavCard(id){
+    var favArray = this.state.json;
+    var arr=[];
+    for(var obj of favArray){
+      if(obj._id!=id){
+        arr.push(obj);
+      }
+    }
+    this.setState({json:arr});
+  }
   render(){
     return (
       <div>
-        <DisplayFavComponent fav='favourites' json={this.state.json} />
+        <DisplayFavComponent removeFav={this.removeFavCard.bind(this)} fav='favourites' json={this.state.json} />
       </div>
     );
   }

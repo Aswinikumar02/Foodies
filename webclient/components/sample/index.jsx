@@ -7,7 +7,7 @@ class MainComponent extends React.Component {
     constructor() {
         super();
         this.state = {
-            result: []
+            result: [],button:'',color:'',icon:''
         };
     }
     getResturantDataFromZomato(cityName, cuisine) {
@@ -29,7 +29,7 @@ class MainComponent extends React.Component {
                     },
                     success: function(data) {
                         console.log('Successfully got JSON from Zomato' + data);
-                        this.setState({result: data.restaurants});
+                        this.setState({result: data.restaurants,button:'Search',color:'green',icon:'search'});
                       }.bind(this),
                     error: function(err) {
                       console.log('error occurred on AJAX');
