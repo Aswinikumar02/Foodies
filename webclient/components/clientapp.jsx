@@ -19,4 +19,4 @@ class MainComponent extends React.Component {
 ReactDOM.render(
     <MainComponent/>, document.getElementById('mountapp'));
 
-    module.exports = MainComponent
+    module.exports = MainComponent;

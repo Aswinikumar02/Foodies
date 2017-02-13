@@ -1,10 +1,10 @@
 const Restaurant = require('./restaurantEntity');
 
-var Restaurantcntrl = {
+let Restaurantcntrl = {
     Get: function(req, res) {
         Restaurant.find({}, function(err, todos) {
             if (err) {
-                res.json({status: false, error: "Something went wrong"});
+                res.json({status: false, error: 'Something went wrong'});
                 return;
             }
             res.json({status: true, restaurant: todos});
@@ -15,15 +15,15 @@ var Restaurantcntrl = {
         var restaurant = new Restaurant(req.body);
         restaurant.save(function(err, todo) {
             if (err) {
-                res.json({status: false, error: "Something went wrong"});
+                res.json({status: false, error: 'Something went wrong'});
                 return;
             }
-            res.json({status: true, message: "Restaurant Saved!!"});
+            res.json({status: true, message: 'Restaurant Saved!!'});
         });
     },
 
     delete: function(req, res) {
-        var id = req.params.id;
+        let id = req.params.id;
         Restaurant.findByIdAndRemove(id).then((doc) => {
             res.send(doc);
         }, (err) => {
@@ -31,7 +31,7 @@ var Restaurantcntrl = {
         });
     },
     patch: function(req, res) {
-        var id = req.params.id;
+        let id = req.params.id;
         Restaurant.findByIdAndUpdate(id, {
             $set: {
                 comments: req.body.comments
@@ -42,6 +42,6 @@ var Restaurantcntrl = {
             res.send(err);
         });
     }
-}
+};
 
 module.exports = Restaurantcntrl;

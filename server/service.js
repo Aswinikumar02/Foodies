@@ -17,7 +17,7 @@ function setupStaticRoutes(app) {
 }
 
 function setupRestRoutes(app) {
-    console.log('Inside service setupRestRoutes');
+    // console.log('Inside service setupRestRoutes');
     app.use('/users', require(path.join(__dirname, './users')));
     app.use('/restaurant', require(path.join(__dirname, './restaurant')));
     //  MOUNT YOUR REST ROUTE HERE
@@ -48,7 +48,7 @@ function setupMiddlewares(app) {
     app.use(compression());
 
     app.use(function(req, res, next) {
-        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Origin', '*');
         res.header('Access-Control-Allow-Method', 'GET,POST,PUT,DELETE');
         res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
         next();

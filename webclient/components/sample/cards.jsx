@@ -1,124 +1,109 @@
 import React from 'react';
-import {Card, Icon, Image, Button, Input} from 'semantic-ui-react';
+import {Card, Image, Input} from 'semantic-ui-react';
 import ButtonComponent from './button.jsx';
-var textBoxStyle = {
-    height: '170px'
-}
-var imgStyle = {
+let imgStyle = {
     height: '200px'
-}
-var textStyle = {
+};
+let textStyle = {
     color: 'green',
     fontSize: '110%'
-}
-var inputStyle = {
+};
+let inputStyle = {
     color: 'black'
-}
+};
 let CardStyle = {
-	height:'150px'
-
-}
+    height: '150px'
+};
+let Cardpad = {
+    margin: '5px'
+};
 class Cards extends React.Component {
     constructor() {
         super();
-        this.state = {comments:'',
-        addButton: 'Add To Favourites',
-        deleteButton:'Delete',
-        updateButton:'Update',colorName: 'green',
-        updateColor:'blue'
-      };
+        this.state = {
+            comments: '',
+            addButton: 'Add To Favourites',
+            deleteButton: 'Delete',
+            updateButton: 'Update',
+            colorName: 'teal',
+            updateColor: 'blue'
+        };
     }
 
-		addRestaurant() {
-    $.ajax({
+    addRestaurant() {
+        $.ajax({
+            url: './Restaurant/add',
+            type: 'POST',
+            data: {
+                'name': this.props.name,
+                'address': this.props.address,
+                'cuisines': this.props.cuisines,
+                'ratings': this.props.ratings,
+                'img': this.props.img
+            },
+            success: function(data) {
+                // console.log(data);
+                // console.log('Successfully added');
+                this.setState({addButton: 'Added to Your Favourites'});
+            }.bind(this)
+        });
+    }
 
-        url:'./Restaurant/add' ,
-        type: 'POST',
-        data:{
-					"name":this.props.name,
-					"address":this.props.address,
-					"cuisines":this.props.cuisines,
-					"ratings":this.props.ratings,
-					"img":this.props.img
-				},
-        success: function(data) {
-            console.log(data);
-            console.log('Successfully added');
-            this.setState({addButton:'Added to Your Favourites'});
-
-        }.bind(this),
-        error: function(err) {
-            console.log('error occurred on AJAX');
-            console.log(err);
-        }.bind(this)
-    });
-  }
-
-  deleteFavourites(){
-      var id = this.props.id;
-      console.log('deleted id',id);
-      $.ajax({
-          type: 'DELETE',
-          url: `/restaurant/delete/${id}`,
-          success: function(msg){
-            console.log('success',msg);
-              this.props.removeFav(id);
-          }.bind(this)
-      });
+    deleteFavourites() {
+        var id = this.props.id;
+        // console.log('deleted id', id);
+        $.ajax({
+            type: 'DELETE',
+            url: `/Restaurant/delete/${id}`,
+            success: function(msg) {
+                // console.log('success', msg);
+                this.props.removeFav(id);
+            }.bind(this)
+        });
     }
 
     updateFavourites() {
-        var comments = this.state.comments;
-        var id = this.props.id;
+        let comments = this.state.comments;
+        let id = this.props.id;
         $.ajax({
-            url: '/Restaurant/update/${id}',
+            url: `/restaurant/update/${id}`,
             type: 'PATCH',
             data: {
                 'comments': comments
             },
             success: function(data) {
-                console.log('done');
-                this.setState({updateButton: 'Updated'});
-            }.bind(this),
-            error: function(err) {
-                console.log('error occurred on AJAX');
-                console.log(err);
+              this.setState({updateButton: 'Updated', updateColor: 'grey'});
+                // console.log('done');
             }.bind(this)
         });
     }
     getComments(e) {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         this.setState({comments: e.target.value});
     }
 
     render() {
-
-      var fav = this.props.fav;
-      var del = "";
-      var favourites =this.props.favourites;
-      var add ='';
-      var textBox = '';
-      if(fav=='fav'){
-        add = <ButtonComponent  click={this.addRestaurant.bind(this)}
-          size='large' color={this.state.colorName || 'green'}
-          name='heart' button={this.state.addButton}/>;
-      }
-      if(fav=='favourites'){
-        del = (
+      let fav = this.props.fav;
+        let del = '';
+        let favourites = this.props.favourites;
+        let add = '';
+        let textBox = '';
+        if (fav === 'fav') {
+            add = <ButtonComponent click={this.addRestaurant.bind(this)} size='large' color={this.state.colorName || 'green'} name='heart' button={this.state.addButton}/>;
+        }
+        if (fav === 'favourites') {
+            del = (
                 <div>
                     <Input fluid type='text' onChange={this.getComments.bind(this)} placeholder={this.props.comments} value={this.state.comments}/>
                     <div className='ui two buttons'>
-                        <ButtonComponent click={this.updateFavourites.bind(this)}
-                          size='small' color={this.state.updateColor || 'blue'}
-                          button={this.state.updateButton}/>
-                        <ButtonComponent click={this.deleteFavourites.bind(this)}
-                          size='small' color={this.state.deleteColor || 'red'} button={this.state.deleteButton}/>
+                        <ButtonComponent click={this.updateFavourites.bind(this)} size='small' color={this.state.updateColor || 'blue'} button={this.state.updateButton}/>
+                        <ButtonComponent click={this.deleteFavourites.bind(this)} size='small' color={this.state.deleteColor || 'red'} button={this.state.deleteButton}/>
                     </div>
                 </div>
-            )
-      }
+            );
+        };
         return (
-            <Card>
+            <Card style={Cardpad}>
                 <Image style={imgStyle} src={this.props.img}/>
                 <Card.Content style={CardStyle}>
                     <Card.Header>
@@ -143,7 +128,7 @@ class Cards extends React.Component {
                 </Card.Content>
                 {add}
                 {textBox}
-              {del}
+                {del}
             </Card>
         );
     }

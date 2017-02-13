@@ -1,19 +1,38 @@
-var React = require('react');
-var {Link} = require('react-router');
-var NavBar = React.createClass({
+import React, {Component} from 'react';
+import {Menu, Button} from 'semantic-ui-react';
+let {Link} = require('react-router');
 
-render:function(){
-  return(
-    <div className="container-fluid">
-    <ul className="nav navbar-nav">
-    <li><Link to="/">Home</Link></li>
-    <li><Link to="/gmailbox">Gmail</Link></li>
-    <li><Link to="/about">About Us</Link></li>
-    <li><Link to='/favourites'>Favourite</Link></li>
-    </ul>
-    </div>
-  );
+class nav extends Component {
+
+    state = {
+        activeItem: 'home'
+    };
+
+    handleItemClick = (e, {name}) => this.setState({activeItem: name})
+
+    render() {
+        const {activeItem} = this.state;
+
+        return (
+            <div>
+                <Menu pointing>
+                    <Link to="/">
+                        <Menu.Item name='home' size='large' active={activeItem === 'home'} onClick={this.handleItemClick}/>
+                    </Link>
+                    <Link to="/favourites">
+                        <Menu.Item name='favourites' active={activeItem === 'messages'} onClick={this.handleItemClick}/>
+                    </Link>
+                    <Link to="/About">
+                        <Menu.Item name='About' active={activeItem === 'messages'} onClick={this.handleItemClick}/>
+                    </Link>
+                    <Menu.Menu position='right'>
+                        <Menu.Item>
+                            <Button size='large' color='red'>Signup/Login</Button>
+                        </Menu.Item>
+                    </Menu.Menu>
+                </Menu>
+            </div>
+        );
+    }
 }
-});
-
-module.exports=NavBar;
+module.exports = nav;
