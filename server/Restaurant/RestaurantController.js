@@ -12,7 +12,7 @@ let Restaurantcntrl = {
     },
 
     post: function(req, res) {
-        var restaurant = new Restaurant(req.body);
+        let restaurant = new Restaurant(req.body);
         restaurant.save(function(err, todo) {
             if (err) {
                 res.json({status: false, error: 'Something went wrong'});

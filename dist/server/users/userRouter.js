@@ -1,10 +1,12 @@
 'use strict';
-const logger = require('./../../applogger');
+// const logger = require('./../../applogger');
 const router = require('express').Router();
 const userModel = require('./userEntity').userModel;
+const passport = require('passport');
+const Strategy = require('passport-local').Strategy;
 
 router.post('/add', function(req, res) {
-    logger.debug("Received request" + JSON.stringify(req.body));
+    // logger.debug('Received request' + JSON.stringify(req.body));
     if (req.body) {
         let user = new userModel(req.body);
         user.save(function(err) {
@@ -15,10 +17,10 @@ router.post('/add', function(req, res) {
             }
         });
     }
-})
+});
 
 router.delete('/delete/:id', function(req, res) {
-    logger.debug("Received request" + JSON.stringify(req.body));
+    // logger.debug('Received request' + JSON.stringify(req.body));
     if (req.params.id) {
         let id = req.params.id;
         userModel.findByIdAndRemove(id, function(err) {
@@ -29,10 +31,10 @@ router.delete('/delete/:id', function(req, res) {
             }
         });
     }
-})
+});
 
 router.patch('/update/:id', function(req, res) {
-    logger.debug("Received request" + JSON.stringify(req.body));
+    // logger.debug('Received request' + JSON.stringify(req.body));
     if (req.params.id) {
         let id = req.params.id;
         userModel.findByIdAndUpdate(id, {
@@ -49,7 +51,7 @@ router.patch('/update/:id', function(req, res) {
             }
         });
     }
-})
+});
 
 // Get details of all users in the system
 router.get('/', function(req, res) {
@@ -60,6 +62,17 @@ router.get('/', function(req, res) {
             res.json({all});
         }
     });
+});
+router.post('/login', passport.authenticate('local', {
+    failureFlash: 'Invalid Username and Password',
+    successFlash: "Welcome to Movie App"
+}), function(req, res) {
+    res.json({responseText: 'authenticated'});
+});
+
+router.get('/logout', function(req, res) {
+    console.log('Session deleted');
+    req.session.destroy();
 });
 
 module.exports = router;

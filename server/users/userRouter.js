@@ -1,65 +1,25 @@
 'use strict';
-// const logger = require('./../../applogger');
+const logger = require('./../../applogger');
 const router = require('express').Router();
-const UserModel = require('./userEntity').userModel;
+const mongoose = require('mongoose');
+const User = require('./userEntity');
+const userController = require('./userController');
+const passport = require('passport');
+const Strategy = require('passport-local').Strategy;
 
-router.post('/add', function(req, res) {
-    // logger.debug('Received request' + JSON.stringify(req.body));
-    if (req.body) {
-        let user = new UserModel(req.body);
-        user.save(function(err) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.json({message: 'User saved successfully'});
-            }
-        });
-    }
-});
+router.post('/add', userController.addUser);
 
-router.delete('/delete/:id', function(req, res) {
-    // logger.debug('Received request' + JSON.stringify(req.body));
-    if (req.params.id) {
-        let id = req.params.id;
-        userModel.findByIdAndRemove(id, function(err) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.json({message: 'successfully deleted'});
-            }
-        });
-    }
-});
+router.get('/', userController.getUser);
 
-router.patch('/update/:id', function(req, res) {
-    // logger.debug('Received request' + JSON.stringify(req.body));
-    if (req.params.id) {
-        let id = req.params.id;
-        userModel.findByIdAndUpdate(id, {
-            $set: {
-                userName: req.body.userName
-            }
-        }, {
-            new: true
-        }, function(err) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.json({message: 'User updated successfully'});
-            }
-        });
-    }
-});
+router.delete('/delete/:id', userController.deleteUser);
 
-// Get details of all users in the system
-router.get('/', function(req, res) {
-    UserModel.find({}, function(all, err) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.json({all});
-        }
-    });
-});
+router.put('/update/:id', userController.updateUser);
+
+router.post('/login',passport.authenticate('local', {
+       failureFlash: 'Invalid Username and Password',
+       successFlash: "Welcome to foodie App"
+    }),userController.login);
+
+router.get('/logout', userController.logout);
 
 module.exports = router;

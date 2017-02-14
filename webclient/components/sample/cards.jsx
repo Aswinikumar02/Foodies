@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, Image, Input} from 'semantic-ui-react';
 import ButtonComponent from './button.jsx';
+import $ from 'jquery';
 let imgStyle = {
     height: '200px'
 };
@@ -35,11 +36,11 @@ class Cards extends React.Component {
             url: './Restaurant/add',
             type: 'POST',
             data: {
-                'name': this.props.name,
-                'address': this.props.address,
-                'cuisines': this.props.cuisines,
-                'ratings': this.props.ratings,
-                'img': this.props.img
+                name: this.props.name,
+                address: this.props.address,
+                cuisines: this.props.cuisines,
+                ratings: this.props.ratings,
+                img: this.props.img
             },
             success: function(data) {
                 // console.log(data);
@@ -69,13 +70,19 @@ class Cards extends React.Component {
             url: `/restaurant/update/${id}`,
             type: 'PATCH',
             data: {
-                'comments': comments
+                comments: comments
             },
             success: function(data) {
-              this.setState({updateButton: 'Updated', updateColor: 'grey'});
+                this.update(id, comments).bind(this)
+                // this.setState({updateButton: 'Updated', updateColor: 'grey'});
                 // console.log('done');
             }.bind(this)
         });
+        this.setState({comments: ''})
+    }
+
+    update(id, comments) {
+        this.props.update(id, comments);
     }
     getComments(e) {
         // console.log(e.target.value);
@@ -83,7 +90,7 @@ class Cards extends React.Component {
     }
 
     render() {
-      let fav = this.props.fav;
+        let fav = this.props.fav;
         let del = '';
         let favourites = this.props.favourites;
         let add = '';
@@ -101,7 +108,8 @@ class Cards extends React.Component {
                     </div>
                 </div>
             );
-        };
+        }
+
         return (
             <Card style={Cardpad}>
                 <Image style={imgStyle} src={this.props.img}/>

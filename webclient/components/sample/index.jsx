@@ -1,7 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import Component1 from './Search.jsx';
 import Component2 from './Result.jsx';
+import $ from 'jquery';
 // const logger = require('./../../applogger');
 
 class MainComponent extends React.Component {

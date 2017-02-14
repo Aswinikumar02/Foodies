@@ -6,6 +6,7 @@ let NavBar = require('./components/NavBar');
 let About = require('./components/About');
 let Home = require('./components/clientapp');
 let Favourites = require('./components/sample/favourites');
+let Login = require('./components/sample/login');
 let MainComp = React.createClass({
     render: function() {
         return (
@@ -18,8 +19,9 @@ let MainComp = React.createClass({
 });
 ReactDOM.render(
     <Router history={browserHistory}>
-    <Route path="/" component={MainComp}>
-        <IndexRoute component={Home}/>
+    <Route path="/" component={Login}/>
+        <Route component = {MainComp}>
+        <Route path="/home" component={Home}/>
         <Route path="/about" component={About}/>
         <Route path="/gmailbox" component={GmailBox}/>
         <Route path='/favourites' component={Favourites}/>

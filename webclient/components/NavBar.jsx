@@ -10,13 +10,30 @@ class nav extends Component {
 
     handleItemClick = (e, {name}) => this.setState({activeItem: name})
 
+    onClick() {
+
+       $.ajax({
+           url: '/users/logout',
+           type: 'GET',
+           success: function(data) {
+               if (typeof data.redirect == 'string')
+                   window.location.replace(window.location.protocol + "//" + window.location.host + data.redirect);
+               }
+           .bind(this),
+           error: function(err) {
+               console.log('error in logout' + err);
+           }.bind(this)
+       });
+   }
+
     render() {
         const {activeItem} = this.state;
 
         return (
             <div>
                 <Menu pointing>
-                    <Link to="/">
+                    
+                    <Link to="/home">
                         <Menu.Item name='home' size='large' active={activeItem === 'home'} onClick={this.handleItemClick}/>
                     </Link>
                     <Link to="/favourites">
@@ -27,7 +44,7 @@ class nav extends Component {
                     </Link>
                     <Menu.Menu position='right'>
                         <Menu.Item>
-                            <Button size='large' color='red'>Signup/Login</Button>
+                            <Button size='large' color='red' onClick={this.onClick.bind(this)}>logout</Button>
                         </Menu.Item>
                     </Menu.Menu>
                 </Menu>

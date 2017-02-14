@@ -1,5 +1,6 @@
 import React from 'react';
 import DisplayFavComponent from './displayfavourites.jsx';
+import $ from 'jquery';
 // const logger = require('./../../applogger');
 class Favourites extends React.Component {
     constructor() {
@@ -29,10 +30,20 @@ class Favourites extends React.Component {
         }
         this.setState({json: arr});
     }
+    update(id, comments) {
+        let arr = this.state.json;
+        for (let obj of arr) {
+            if (obj._id === id) {
+                obj.comments = comments;
+            }
+        }
+        this.setState({json: arr});
+    }
     render() {
+        let update = this.update.bind(this);
         return (
             <div>
-                <DisplayFavComponent removeFav={this.removeFavCard.bind(this)} fav='favourites' json={this.state.json}/>
+                <DisplayFavComponent removeFav={this.removeFavCard.bind(this)} fav='favourites' json={this.state.json} update={update}/>
             </div>
         );
     }

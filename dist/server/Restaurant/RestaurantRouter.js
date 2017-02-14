@@ -1,34 +1,13 @@
 'use strict';
-const logger = require('./../../applogger');
+// const logger = require('./../../applogger');
 const router = require('express').Router();
-//const userCtrl = require('./userController');
+const mongoose = require('mongoose');
+const Restaurant = require('./restaurantEntity');
+const userCtrl = require('./restaurantController');
 
-router.post('/add', function(req, res) {
-    logger.debug("Inside user post");
-    let user = req.body.name;
-    if (typeof user !== 'number')
-        res.send('Hello ' + user);
-    }
-);
-
-router.delete('/delete', function(req, res) {
-    logger.debug("Inside user delete post");
-    let user = req.body.id;
-    if (typeof user === 'number')
-        res.send('delete ' + user);
-    }
-);
-
-router.patch('/update', function(req, res) {
-    logger.debug("Inside user update post");
-    let user = req.body.id;
-    res.send('updated ' + user);
-});
-
-// Get details of all user in the system
-router.get('/', function(req, res) {
-    console.log('Inside get');
-    res.send('response from user GET route check');
-});
+router.post('/add', userCtrl.post);
+router.get('/view', userCtrl.Get);
+router.delete('/delete/:id', userCtrl.delete);
+router.patch('/update/:id', userCtrl.patch);
 
 module.exports = router;
